@@ -1,9 +1,12 @@
 ---
+import '../styles'
+
 export interface Props {
 	title: string;
 }
 
 const { title } = Astro.props as Props;
+
 ---
 
 <!DOCTYPE html>
@@ -43,10 +46,12 @@ const { title } = Astro.props as Props;
 
 	:global(h1) {
 		font-size: var(--font-size-xl);
+		font-family: Eudoxus Sans;
 	}
 
 	:global(h2) {
 		font-size: var(--font-size-lg);
+		font-family: Inter;
 	}
 
 	:global(code) {
