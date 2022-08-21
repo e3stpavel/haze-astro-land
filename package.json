@@ -10,6 +10,8 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^1.0.6"
+    "@antfu/eslint-config": "^0.26.1",
+    "astro": "^1.0.6",
+    "eslint": "^8.22.0"
   }
 }
