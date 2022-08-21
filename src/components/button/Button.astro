@@ -1,0 +1,50 @@
+---
+export interface Props {
+  // icon?: TODO
+  outlined?: boolean
+  fillColor?: string
+  textColor?: string
+}
+
+const { outlined, fillColor, textColor } = Astro.props as Props
+
+const backgroundColor = outlined ? 'transparent' : fillColor
+const borderColor = outlined ? fillColor : 'transparent'
+
+const hoverBackgroundColor = outlined ? borderColor : backgroundColor;
+const hoverTextColor = outlined ? 'white' : textColor;
+---
+
+<button type="button">
+  <p>
+    <slot>
+      button
+    </slot>
+  </p>
+</button>
+
+<style define:vars={{ backgroundColor, borderColor, hoverBackgroundColor, textColor, hoverTextColor }}>
+button {
+  color: var(--textColor);
+  background-color: var(--backgroundColor);
+  border: 1px var(--borderColor) solid;
+
+  font-family: Inter;
+  font-size: 0.875em;
+  line-height: 1.75em;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+
+  padding: 0.5em 1.5em;
+  border-radius: 8px;
+}
+button:hover {
+  background-color: var(--hoverBackgroundColor);
+  color: var(--hoverTextColor);
+}
+
+p {
+  text-transform: capitalize;
+  margin: 0;
+}
+</style>

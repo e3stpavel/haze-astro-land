@@ -1,0 +1,36 @@
+---
+export interface Props {
+  title: string
+  href: string
+}
+
+const { title, href } = Astro.props as Props
+---
+
+<li>
+  <a href={ href }>
+    { title }
+  </a>
+</li>
+
+<style>
+  li {
+    font-family: Inter;
+    font-size: 0.875em;
+    line-height: 1.75em;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+
+    padding: 0.5em 1.5em;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  li:hover {
+    background-color: var(--color-hover-bg);
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-text);
+  }
+</style>

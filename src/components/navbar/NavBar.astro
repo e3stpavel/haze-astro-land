@@ -1,0 +1,51 @@
+---
+import Button from "~/components/button";
+import {default as NavBarItem } from "./shared/Item.astro";
+---
+<nav>
+  <a href="/" aria-label="home">
+    <img alt="logo" src="/logo_full.svg" />
+  </a>
+
+  <ul>
+    <NavBarItem
+      title="Overview"
+      href="/"
+    />
+    <NavBarItem
+      title="Pages"
+      href="/"
+    />    
+    <NavBarItem
+      title="Blog"
+      href="/"
+    />    
+    <NavBarItem
+      title="Contact"
+      href="/"
+    />
+  </ul>
+
+  <Button fillColor={'#130b46'} outlined>get started</Button>
+</nav>
+<style>
+  nav {
+    display: flex;
+    place-items: center;
+    justify-content: space-between;
+    
+    padding: 0 4.5em;
+    height: 6.25em;
+
+    border-bottom: 1px solid hsla(0, 0%, 71.8%, 0.25);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    gap: 4px;
+  }
+</style>
