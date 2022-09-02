@@ -1,4 +1,7 @@
 ---
+import { template } from './shared/template'
+import Styles from './shared/styles.module.scss'
+
 export interface Props {
   // icon?: TODO
   outlined?: boolean
@@ -8,6 +11,12 @@ export interface Props {
 
 const { outlined, fillColor, textColor } = Astro.props as Props
 
+// sets html (not safe) - need to check for SSX
+const slot = new Proxy({ value: '' }, {})
+if (Astro.slots.has('default')) {
+  slot.value = await Astro.slots.render('default')
+}
+
 const backgroundColor = outlined ? 'transparent' : fillColor
 const borderColor = outlined ? fillColor : 'transparent'
 
@@ -15,8 +24,9 @@ const hoverBackgroundColor = outlined ? borderColor : backgroundColor;
 const hoverTextColor = outlined ? 'white' : textColor;
 ---
 
+<!-- <button type="button" set:html={ template(slot.value) } /> -->
 <button type="button">
-  <p>
+  <p class:list={[ Styles.p ]}>
     <slot>
       button
     </slot>
@@ -43,8 +53,4 @@ button:hover {
   color: var(--hoverTextColor);
 }
 
-p {
-  text-transform: capitalize;
-  margin: 0;
-}
 </style>
