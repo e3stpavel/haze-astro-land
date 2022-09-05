@@ -1,11 +1,8 @@
 ---
-import { ButtonDefault } from "~/components/button"
-import { ButtonRounded } from "~/components/button"
-import {default as NavBarItem } from "./shared/Item.astro"
-
-// deconstructing the imported Component into Astro Component and its Style Classes 
-const { Component: Button, Styles } = ButtonDefault
+import { Button, Default, Rounded, Outlined } from "~/components/button"
+import { default as NavBarItem } from "./shared/Item.astro"
 ---
+
 <nav>
   <a href="/" aria-label="home">
     <img alt="logo" src="/logo_full.svg" />
@@ -31,12 +28,10 @@ const { Component: Button, Styles } = ButtonDefault
   </ul>
 
   <!-- Example without deconstructing the imported Component -->
-  <ButtonDefault.Component styles={ButtonDefault.Styles}>get started</ButtonDefault.Component>
+  <Button styles={ Default }>get started</Button>
 
   <!-- Example with deconstructing the imported Component -->
-  <Button styles={Styles}>get started</Button>
-
-  <ButtonRounded.Component styles={ButtonRounded.Styles}>get started</ButtonRounded.Component>
+  <Button styles={ Rounded, Outlined }>get started</Button>
 
 </nav>
 

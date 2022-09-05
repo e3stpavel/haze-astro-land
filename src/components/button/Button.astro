@@ -1,13 +1,17 @@
 ---
+import { brighter } from '~/composables/utils'
+
 export interface Props {
   styles: CSSModuleClasses
   // icon?: TODO
 }
 
 const { styles } = Astro.props as Props
+
+const fillColor = '#130b46'
+const hoverColor = brighter(fillColor, 15)
 ---
 
-<!-- <button type="button" set:html={ template(slot.value) } /> -->
 <button type="button" class:list={[ styles.button ]}>
   <p class:list={[ styles.p ]}>
     <slot>
@@ -16,10 +20,10 @@ const { styles } = Astro.props as Props
   </p>
 </button>
 
-<style>
+<style lang="scss" define:vars={{ fillColor, hoverColor }}>
 button {
-  color: #fff;
-  background-color: #000;
+  color: #ffffff;
+  background-color: var(--fillColor);
   border: 1px transparent solid;
 
   font-family: Inter;
@@ -30,10 +34,18 @@ button {
 
   padding: 0.5em 1.5em;
   border-radius: 8px;
+
+  transition: background-color .15s ease;
 }
-/* button:hover {
-  background-color: var(--hoverBackgroundColor);
-  color: var(--hoverTextColor);
-} */
+button:hover {
+  // TODO: it wont work with variables, so better calculate color tints in TypeScript
+  background-color: var(--hoverColor);
+  cursor: pointer;
+}
+
+p {
+  text-transform: capitalize;
+  margin: 0;
+}
 
 </style>
