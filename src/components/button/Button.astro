@@ -1,43 +1,26 @@
 ---
-import { template } from './shared/template'
-import Styles from './shared/styles.module.scss'
-
 export interface Props {
+  styles: CSSModuleClasses
   // icon?: TODO
-  outlined?: boolean
-  fillColor?: string
-  textColor?: string
 }
 
-const { outlined, fillColor, textColor } = Astro.props as Props
-
-// sets html (not safe) - need to check for SSX
-const slot = new Proxy({ value: '' }, {})
-if (Astro.slots.has('default')) {
-  slot.value = await Astro.slots.render('default')
-}
-
-const backgroundColor = outlined ? 'transparent' : fillColor
-const borderColor = outlined ? fillColor : 'transparent'
-
-const hoverBackgroundColor = outlined ? borderColor : backgroundColor;
-const hoverTextColor = outlined ? 'white' : textColor;
+const { styles } = Astro.props as Props
 ---
 
 <!-- <button type="button" set:html={ template(slot.value) } /> -->
-<button type="button">
-  <p class:list={[ Styles.p ]}>
+<button type="button" class:list={[ styles.button ]}>
+  <p class:list={[ styles.p ]}>
     <slot>
       button
     </slot>
   </p>
 </button>
 
-<style define:vars={{ backgroundColor, borderColor, hoverBackgroundColor, textColor, hoverTextColor }}>
+<style>
 button {
-  color: var(--textColor);
-  background-color: var(--backgroundColor);
-  border: 1px var(--borderColor) solid;
+  color: #fff;
+  background-color: #000;
+  border: 1px transparent solid;
 
   font-family: Inter;
   font-size: 0.875em;
@@ -48,9 +31,9 @@ button {
   padding: 0.5em 1.5em;
   border-radius: 8px;
 }
-button:hover {
+/* button:hover {
   background-color: var(--hoverBackgroundColor);
   color: var(--hoverTextColor);
-}
+} */
 
 </style>
