@@ -1,5 +1,5 @@
 ---
-import { Button } from "~/components/button"
+import { Button, Outlined } from "~/components/button"
 import { default as NavBarItem } from "./shared/Item.astro"
 ---
 
@@ -28,7 +28,7 @@ import { default as NavBarItem } from "./shared/Item.astro"
   </ul>
 
   <!-- Without passing styles prop we declare default button style -->
-  <Button>get started</Button>
+  <Button styles={[ Outlined ]}>get started</Button>
 </nav>
 
 <style>
@@ -37,10 +37,27 @@ import { default as NavBarItem } from "./shared/Item.astro"
     place-items: center;
     justify-content: space-between;
     
+    position: relative;
     padding: 0 4.5em;
     height: 6.25em;
+  }
+  nav::after {
+    content: '';
+    position: absolute;
 
-    border-bottom: 1px solid hsla(0, 0%, 71.8%, 0.25);
+    width: 100vw;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: hsla(0, 0%, 71.8%, 0.25);
+  }
+  @supports (translate: -50%) {
+    nav::after {
+      transform: none;
+      translate: -50%;
+    }
   }
 
   ul {

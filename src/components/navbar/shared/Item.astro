@@ -23,10 +23,12 @@ const { title, href } = Astro.props as Props
 
     padding: 0.5em 1.5em;
     border-radius: 8px;
-    cursor: pointer;
+
+    transition: background-color .15s ease;
   }
   li:hover {
     background-color: var(--color-hover-bg);
+    cursor: pointer;
   }
 
   a {
