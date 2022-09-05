@@ -1,0 +1,10 @@
+.button {
+  background-color: transparent;
+  color: var(--fillColor);
+  border-color: transparent;
+}
+.button:hover {
+  text-decoration: underline;
+  color: var(--hoverColor);
+  background-color: transparent;
+}

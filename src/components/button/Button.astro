@@ -2,27 +2,34 @@
 import { brighter } from '~/composables/utils'
 
 export interface Props {
-  styles: CSSModuleClasses
+  /**
+   * Represent the specific style configuration for Component
+   * Configurations can be mixed, but because of that they can override each other
+   */
+  styles?: CSSModuleClasses[]
+
   // icon?: TODO
 }
 
 const { styles } = Astro.props as Props
 
+// TODO: for Moziila UI use global config
 const fillColor = '#130b46'
+const textColor = '#ffffff'
 const hoverColor = brighter(fillColor, 15)
 ---
 
-<button type="button" class:list={[ styles.button ]}>
-  <p class:list={[ styles.p ]}>
+<button type="button" class:list={[ styles?.map(style => style.button) ]}>
+  <p class:list={[ styles?.map(style => style.p) ]}>
     <slot>
       button
     </slot>
   </p>
 </button>
 
-<style lang="scss" define:vars={{ fillColor, hoverColor }}>
+<style lang="scss" define:vars={{ fillColor, hoverColor, textColor }}>
 button {
-  color: #ffffff;
+  color: var(--textColor);
   background-color: var(--fillColor);
   border: 1px transparent solid;
 
@@ -38,7 +45,6 @@ button {
   transition: background-color .15s ease;
 }
 button:hover {
-  // TODO: it wont work with variables, so better calculate color tints in TypeScript
   background-color: var(--hoverColor);
   cursor: pointer;
 }

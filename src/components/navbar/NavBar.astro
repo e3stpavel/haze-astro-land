@@ -1,5 +1,5 @@
 ---
-import { Button, Default, Rounded, Outlined } from "~/components/button"
+import { Button } from "~/components/button"
 import { default as NavBarItem } from "./shared/Item.astro"
 ---
 
@@ -27,12 +27,8 @@ import { default as NavBarItem } from "./shared/Item.astro"
     />
   </ul>
 
-  <!-- Example without deconstructing the imported Component -->
-  <Button styles={ Default }>get started</Button>
-
-  <!-- Example with deconstructing the imported Component -->
-  <Button styles={ Rounded, Outlined }>get started</Button>
-
+  <!-- Without passing styles prop we declare default button style -->
+  <Button>get started</Button>
 </nav>
 
 <style>

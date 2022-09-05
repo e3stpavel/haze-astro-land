@@ -3,3 +3,8 @@
   background-color: transparent;
   border: 1px var(--fillColor) solid;
 }
+.button:hover {
+  color: var(--textColor);
+  background-color: var(--hoverColor);
+  border-color: var(--hoverColor);
+}
